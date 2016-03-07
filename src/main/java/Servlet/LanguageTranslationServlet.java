@@ -32,7 +32,7 @@ public class LanguageTranslationServlet extends HttpServlet {
 			
 			request.setAttribute("outputText",translatedText);
 			
-			private CloudantClientClass db = new CloudantClientClass();
+			CloudantClientClass db = new CloudantClientClass();
 			String JSONString = translatedText;
 			int addStat;
 			addStat = db.addEntry(JSONString);
