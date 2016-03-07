@@ -1,3 +1,5 @@
+package Bean;
+
 import java.util.*;
 import java.io.*;
 import org.cloudfoundry.runtime.env.*;
