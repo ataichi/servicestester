@@ -31,12 +31,14 @@ public class LanguageTranslationServlet extends HttpServlet {
 			String translatedText = translated.toString();
 			
 			request.setAttribute("outputText",translatedText);
-			
-			CloudantClientClass db = new CloudantClientClass();
-			String JSONString = translatedText;
-			int addStat;
-			addStat = db.addEntry(JSONString);
-			
+			try{
+				CloudantClientClass db = new CloudantClientClass();
+				String JSONString = translatedText;
+				int addStat;
+				addStat = db.addEntry(JSONString);
+			} catch (Exception e) {
+				e.printStackTrace(System.err);
+			}
 			
 			/*
 			String test = connector.getUsername();
