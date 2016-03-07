@@ -1,5 +1,6 @@
 package Servlet;
 
+import Bean.CloudantClientClass;
 import Bean.LanguageTranslatorConnector;
 import com.ibm.watson.developer_cloud.language_translation.v2.LanguageTranslation;
 import com.ibm.watson.developer_cloud.language_translation.v2.model.TranslationResult;
@@ -30,6 +31,12 @@ public class LanguageTranslationServlet extends HttpServlet {
 			String translatedText = translated.toString();
 			
 			request.setAttribute("outputText",translatedText);
+			
+			private CloudantClientClass db = new CloudantClientClass();
+			String JSONString = translatedText;
+			int addStat;
+			addStat = db.addEntry(JSONString);
+			
 			
 			/*
 			String test = connector.getUsername();

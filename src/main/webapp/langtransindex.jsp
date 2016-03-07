@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index.jsp
-    Created on : Feb 4, 2016, 7:29:38 PM
-    Author     : User
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
