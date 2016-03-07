@@ -33,9 +33,9 @@ public class LanguageTranslationServlet extends HttpServlet {
 			request.setAttribute("outputText",translatedText);
 			try{
 				CloudantClientClass db = new CloudantClientClass();
-				String JSONString = translatedText;
+				
 				int addStat;
-				addStat = db.addEntry(JSONString);
+				addStat = db.addEntry(translatedText);
 			} catch (Exception e) {
 				e.printStackTrace(System.err);
 			}

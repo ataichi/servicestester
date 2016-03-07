@@ -23,7 +23,7 @@ public class CloudantClientClass
         try{
             CloudantClient client = getClientConn();
 
-            Database db = client.database("books", true);
+            Database db = client.database("tricia", true);
             JSONParser parser = new JSONParser();
             
             try{
