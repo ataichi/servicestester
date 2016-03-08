@@ -1,4 +1,4 @@
-package bean;
+package Bean;
 
 import java.util.Map;
 import java.text.ParseException;
