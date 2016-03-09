@@ -1,6 +1,7 @@
 package Servlet;
 
 import Bean.CloudantClientClass;
+import Bean.DashDBConnector;
 import Bean.LanguageTranslatorConnector;
 import com.ibm.watson.developer_cloud.language_translation.v2.LanguageTranslation;
 import com.ibm.watson.developer_cloud.language_translation.v2.model.TranslationResult;
@@ -12,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.parser.JSONParser;
+import org.json.simple.JSONObject;
 
 @WebServlet(name = "LanguageTranslationServlet", urlPatterns = {"/LanguageTranslationServlet"})
   
@@ -36,6 +40,18 @@ public class LanguageTranslationServlet extends HttpServlet {
 				
 				int addStat;
 				addStat = db.addEntry(translatedText);
+				
+				DashDBConnector dashdb = new DashDBConnector();
+				
+				
+				JSONParser jsonParser = new JSONParser();
+				JSONObject jsonObject = (JSONObject) jsonParser.parse(translatedText);
+				String product = (String) jsonObject.get("translation");
+				
+								
+				dashdb.addWords(product);
+				
+				
 			} catch (Exception e) {
 				e.printStackTrace(System.err);
 			}

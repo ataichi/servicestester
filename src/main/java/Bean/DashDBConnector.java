@@ -7,10 +7,17 @@ import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Map;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.text.ParseException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import java.util.*;
+import org.cloudfoundry.runtime.env.*;
+import java.io.*;
+import org.json.*;
 
 public class DashDBConnector {
 
@@ -18,6 +25,7 @@ public class DashDBConnector {
     public DashDBConnector() {
 		try{
 			getConnection();
+			createTable();
 		}catch (Exception e){
 			e.printStackTrace(System.err);
 		}
@@ -52,10 +60,51 @@ public class DashDBConnector {
             }
             
         }
-		throw new Exception("No PostgreSQL binded with your app.");
+		throw new Exception("No DashDB service binded with your app in bluemix.");
     }
 
 	
+	private void createTable() throws Exception {
+		String sql = "CREATE TABLE IF NOT EXISTS words" +
+						"(translatedword varchar(145) NOT NULL);" ;
+		Connection connection = null;
+		PreparedStatement statement = null;
+		
+		try {
+			connection = getConnection();
+			statement = connection.prepareStatement(sql);
+			statement.executeUpdate();
+		} finally {			
+			if (statement != null) {
+				statement.close();
+			}
+			
+			if (connection != null) {
+				connection.close();
+			}
+		}
+	}
 	
- 
+	public void addWords(String words) throws Exception {
+		String sql = "INSERT INTO words (translatedword) VALUES ('"+ 
+		words+"')";
+		Connection connection = null;
+		PreparedStatement statement = null;
+		try {
+            connection = getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.executeUpdate();
+           
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+		
+	}
+
+
 }

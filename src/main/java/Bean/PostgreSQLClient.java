@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -21,6 +24,7 @@ public class PostgreSQLClient {
     public PostgreSQLClient() {
         try {
             createUsers();
+			createTable();
         } catch (Exception e) {
             e.printStackTrace(System.err);
         }
@@ -150,5 +154,64 @@ public class PostgreSQLClient {
             }
         }
     }
+	
+	private void createTable() throws Exception {
+		String sql = "CREATE TABLE IF NOT EXISTS words" +
+						"(translatedword varchar(145) NOT NULL, "
+						+ "wordcount varchar(45) NOT NULL);" ;
+		Connection connection = null;
+		PreparedStatement statement = null;
+		
+		try {
+			connection = getConnection();
+			statement = connection.prepareStatement(sql);
+			statement.executeUpdate();
+		} finally {			
+			if (statement != null) {
+				statement.close();
+			}
+			
+			if (connection != null) {
+				connection.close();
+			}
+		}
+	}
+	
+	public int addWords(List<String> words) throws Exception {
+		String sql = "INSERT INTO words (translatedword, wordcount) VALUES (?, ?)";
+		Connection connection = null;
+		PreparedStatement statement = null;
+		try {
+			connection = getConnection();
+			connection.setAutoCommit(false);
+			statement = connection.prepareStatement(sql);
+			
+			for (String s : words) {
+				statement.setString(1, s);
+				statement.addBatch();
+			}
+			int[] rows = statement.executeBatch();
+			connection.commit();
+			
+			return rows.length;
+		} catch (SQLException e) {
+			SQLException next = e.getNextException();
+			
+			if (next != null) {
+				throw next;
+			}
+			
+			throw e;
+		} finally {
+			if (statement != null) {
+				statement.close();
+			}
+			
+			if (connection != null) {
+				connection.close();
+			}
+		}
+	}
+	
 
 }
