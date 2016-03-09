@@ -3,7 +3,7 @@
     Created on : Feb 7, 2016, 9:07:58 PM
     Author     : nievabri
 --%>
-<%@page import="Servlet.Account"%>
+<%@page import="Bean.Account"%>
 <%
     Account account = (Account) session.getAttribute("accountdetails");
 %>

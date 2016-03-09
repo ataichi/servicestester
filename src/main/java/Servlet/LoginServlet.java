@@ -1,6 +1,6 @@
 package Servlet;
 import Bean.*;
-import Servlet.PostgreSQLClient;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
