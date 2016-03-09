@@ -41,7 +41,7 @@ public class DashDBConnector {
 
             for (Object key : vcap.keySet()) {
                 String keyStr = (String) key;
-                if (keyStr.toLowerCase().contains("dashDB")) {
+                if (keyStr.toLowerCase().contains("4be604bd-5e66-435d-_Cloudant_7253685704303303")) {
                     service = (JSONObject) ((JSONArray) vcap.get(keyStr)).get(0);
                     break;
                 }
@@ -87,7 +87,7 @@ public class DashDBConnector {
 	
 	public void addWords(String words) throws Exception {
 		String sql = "INSERT INTO words (translatedword) VALUES ('"+ 
-		words+"')";
+		words+"');";
 		Connection connection = null;
 		PreparedStatement statement = null;
 		try {
