@@ -47,11 +47,11 @@ public class TranslateTexttospeechObjectStorage extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-			LanguageTranslatorConnector connector = new LanguageTranslatorConnector();
+			LanguageTranslatorConnector langconnector = new LanguageTranslatorConnector();
 			LanguageTranslation languageTranslation = new LanguageTranslation();
 			PrintWriter writer = response.getWriter();
 			String input = request.getParameter("inputText");
-			languageTranslation.setUsernameAndPassword(connector.getUsername(),connector.getPassword());
+			languageTranslation.setUsernameAndPassword(langconnector.getUsername(),langconnector.getPassword());
             TranslationResult translated = languageTranslation.translate(request.getParameter("inputText"), "en", "es");
 			String translatedText = translated.toString();
 			
