@@ -47,6 +47,7 @@ public class TexttospeechObjectStorage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 			ObjectStorageConnector connect = new ObjectStorageConnector();
+			connect.createContainer("container1");
 			String filename = null;
             Payload upfile = null;
 
@@ -57,10 +58,11 @@ public class TexttospeechObjectStorage extends HttpServlet {
         	String text = request.getParameter("inputText");
         	String format = "audio/wav";
 			InputStream speech = service.synthesize(text, format);
-            //
+            //^needed to create the wav file. no need to download so removed output stream buf
             upfile = Payloads.create(speech);
-            //upload to object storage
-            connect.uploadFile("sample", filename, upfile);
+			filename = "gustokoetoname";
+            //payloads are used to upload 
+            connect.uploadFile("container1", filename, upfile);
                    
                
 			response.sendRedirect("texttospeechstoragehome.jsp");
