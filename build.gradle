@@ -12,6 +12,7 @@ repositories {
     }
 	maven{
     	url "http://repo.gradle.org/gradle/repo"
+		url "http://repo.spring.io/list/plugins-release/"
     }
 }
 
@@ -39,6 +40,8 @@ dependencies {
 	compile 'org.pacesys:openstack4j:2.10'
 	compile 'org.pacesys.openstack4j.connectors:openstack4j-jersey2:2.10'
 	compile 'org.pacesys.openstack4j.connectors:openstack4j-httpclient:2.10'
+	compile 'cn.guoyukun.jdbc:db2jcc:1.4.2'
+	compile 'org.json:json:20160212', 'com.googlecode.json-simple:json-simple:1.1'
 	
     testCompile 'junit:junit:4.12'   
 	

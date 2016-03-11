@@ -41,7 +41,7 @@ public class DashDBConnector {
 
             for (Object key : vcap.keySet()) {
                 String keyStr = (String) key;
-                if (keyStr.toLowerCase().contains("4be604bd-5e66-435d-_Cloudant_7253685704303303")) {
+                if (keyStr.toLowerCase().contains("dashDB")) {
                     service = (JSONObject) ((JSONArray) vcap.get(keyStr)).get(0);
                     break;
                 }
