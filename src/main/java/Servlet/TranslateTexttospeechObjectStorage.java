@@ -39,13 +39,21 @@ import sun.audio.AudioStream;
 import com.ibm.watson.developer_cloud.text_to_speech.v1.TextToSpeech;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet(urlPatterns = {"/TexttospeechObjectStorage"})
-public class TexttospeechObjectStorage extends HttpServlet {
+@WebServlet(urlPatterns = {"/TranslateTexttospeechObjectStorage"})
+public class TranslateTexttospeechObjectStorage extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+			LanguageTranslatorConnector connector = new LanguageTranslatorConnector();
+			LanguageTranslation languageTranslation = new LanguageTranslation();
+			PrintWriter writer = response.getWriter();
+			String input = request.getParameter("inputText");
+			languageTranslation.setUsernameAndPassword(connector.getUsername(),connector.getPassword());
+            TranslationResult translated = languageTranslation.translate(request.getParameter("inputText"), "en", "es");
+			String translatedText = translated.toString();
+			
 			ObjectStorageConnector connect = new ObjectStorageConnector();
 			connect.createContainer("container1");
 			String filename = null;
@@ -55,7 +63,7 @@ public class TexttospeechObjectStorage extends HttpServlet {
   			TextToSpeech service = new TextToSpeech();
   			service.setUsernameAndPassword(connector.getUsername(),connector.getPassword());
         
-        	String text = request.getParameter("inputText");
+        	String text = translatedText;
         	String format = "audio/wav";
 			InputStream speech = service.synthesize(text, format);
             //^needed to create the wav file. no need to download so removed output stream buf

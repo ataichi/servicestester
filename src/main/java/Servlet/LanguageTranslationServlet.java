@@ -26,7 +26,6 @@ public class LanguageTranslationServlet extends HttpServlet {
 			String input;
 		
 			LanguageTranslatorConnector connector = new LanguageTranslatorConnector();
-			
 			LanguageTranslation languageTranslation = new LanguageTranslation();
 			
 			PrintWriter writer = response.getWriter();
