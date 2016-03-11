@@ -23,7 +23,7 @@
 			if(connect.listAllObjects("container1").isEmpty()) {
 				connect.createContainer("container1");
 			} else {
-				List<? extends SwiftObject> objectlist = connect.listAllObjects("sample");
+				List<? extends SwiftObject> objectlist = connect.listAllObjects("container1");
 				out.println("<table>");
 				for (int i = 0; i < objectlist.size(); i++) {
 					out.println("<tr>");

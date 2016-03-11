@@ -52,7 +52,7 @@ public class TranslateTexttospeechObjectStorage extends HttpServlet {
 			PrintWriter writer = response.getWriter();
 			String input = request.getParameter("inputText");
 			languageTranslation.setUsernameAndPassword(langconnector.getUsername(),langconnector.getPassword());
-            TranslationResult translated = languageTranslation.translate(request.getParameter("inputText"), "en", "es");
+            TranslationResult translated = languageTranslation.translate(input, "en", "es");
 			String translatedText = translated.toString();
 			
 			ObjectStorageConnector connect = new ObjectStorageConnector();
@@ -69,11 +69,10 @@ public class TranslateTexttospeechObjectStorage extends HttpServlet {
 			InputStream speech = service.synthesize(text, format);
             //^needed to create the wav file. no need to download so removed output stream buf
             upfile = Payloads.create(speech);
-			filename = "gustokoetoname.wav";
+			filename = "gustokoetoname";
             //payloads are used to upload 
             connect.uploadFile("container1", filename, upfile);
-                   
-               
+            
 			response.sendRedirect("texttospeechstoragehome.jsp");
         }catch(Exception e){
 			e.printStackTrace(System.err);
