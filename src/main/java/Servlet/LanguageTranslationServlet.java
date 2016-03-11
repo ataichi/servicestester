@@ -64,10 +64,8 @@ public class LanguageTranslationServlet extends HttpServlet {
             JSONArray jsonArray = (JSONArray) jsonObject.get("translations");
             JSONObject jsonObject1 = (JSONObject) jsonArray.get(0);
             String translation = jsonObject1.get("translation").toString();
-         
-            
             String word_count = jsonObject.get("word_count").toString();
-           
+            db.insertInto(input, translation);
 			
 			response.setContentType("text/html");
 			response.setStatus(200);
