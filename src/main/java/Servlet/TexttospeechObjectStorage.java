@@ -39,7 +39,7 @@ import sun.audio.AudioStream;
 import com.ibm.watson.developer_cloud.text_to_speech.v1.TextToSpeech;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet(urlPatterns = {"/Upload"})
+@WebServlet(urlPatterns = {"/TexttospeechObjectStorage"})
 public class TexttospeechObjectStorage extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
