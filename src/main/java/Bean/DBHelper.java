@@ -19,12 +19,12 @@ public class DBHelper {
     
     private static final long serialVersionUID = 1L;
     // set defaults
-    private String databaseHost = "localhost";
-    private long port = 50000;
-    private String databaseName = "mydb";
-    private String user = "myuser";
-    private String password = "mypass";
-    private String url = "myurl";
+    private String databaseHost;
+    private long port;
+    private String databaseName;
+    private String user;
+    private String password;
+    private String url;
     private Connection con;
     PrintWriter writer;
     private final boolean statusVCAP;
@@ -50,7 +50,7 @@ public class DBHelper {
             writer.println("Searching through VCAP keys");
             for (Object key : vcap.keySet()) {
                 String keyStr = (String) key;
-                if (keyStr.toLowerCase().contains("sqldb")) {
+                if (keyStr.toLowerCase().contains("Credentials-1")) {
                     service = (JSONObject) ((JSONArray) vcap.get(keyStr)).get(0);
                     break;
                 }
