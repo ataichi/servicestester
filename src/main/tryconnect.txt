@@ -1,1 +1,2 @@
-json -> cloudant -> dashdb (manage credentials in other db services first)-> twitter -> dataworks
+lang trans/alchemy api json output -> cloudant -> dashdb (manage credentials in other db services first)-> twitter -> dataworks
+texttospeech -> object storage
