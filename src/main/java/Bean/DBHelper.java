@@ -50,7 +50,7 @@ public class DBHelper {
             writer.println("Searching through VCAP keys");
             for (Object key : vcap.keySet()) {
                 String keyStr = (String) key;
-                if (keyStr.toLowerCase().contains("Credentials-1")) {
+                if (keyStr.toLowerCase().contains("sqldb")) {
                     service = (JSONObject) ((JSONArray) vcap.get(keyStr)).get(0);
                     break;
                 }
