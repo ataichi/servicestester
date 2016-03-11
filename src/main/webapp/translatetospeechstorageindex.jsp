@@ -3,22 +3,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Language Translation</title>
+        <title>Translate and Text to Speech </title>
 		
     </head>
     <body>
-        <div align="center">
-            <form action ="TranslateTexttospeechObjectStorage" method="post">
+        <div>
+            <h1>Translate and Text to Speech:</h1>
+            <form action ="TranslateTexttospeechObjectStorage" method="get">
                 <input type="text" name="inputText">
                 <input type="SUBMIT" value="Submit" />
-            </form>
-			
-			<%
-				if (request.getAttribute("outputText") != null){
-					out.println("<h1>"+request.getAttribute("outputText")+"</h1>");
-				}
-				
-			%>
+            </form>	
         </div>
     </body>
 </html>
