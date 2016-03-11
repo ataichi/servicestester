@@ -64,9 +64,9 @@ public class TranslateTexttospeechObjectStorage extends HttpServlet {
   			TextToSpeech service = new TextToSpeech();
   			service.setUsernameAndPassword(connector.getUsername(),connector.getPassword());
         
-        	String text = translatedText;
+        	//String text = translatedText;
         	String format = "audio/wav";
-			InputStream speech = service.synthesize(text, format);
+			InputStream speech = service.synthesize(translatedText, format);
             //^needed to create the wav file. no need to download so removed output stream buf
             upfile = Payloads.create(speech);
 			filename = "gustokoetoname";
