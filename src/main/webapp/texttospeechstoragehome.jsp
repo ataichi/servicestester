@@ -1,7 +1,7 @@
 
 <%@page import="java.util.List"%>
 <%@page import="org.openstack4j.model.storage.object.SwiftObject"%>
-<%@page import="connector.ObjectStorageConnector" %>
+<%@page import="Bean.ObjectStorageConnector" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,8 +20,8 @@
         <%
             ObjectStorageConnector connect = new ObjectStorageConnector();
 			
-			if(connect.listAllObjects("sample").isEmpty()) {
-				connect.createContainer("sample");
+			if(connect.listAllObjects("container1").isEmpty()) {
+				connect.createContainer("container1");
 			} else {
 				List<? extends SwiftObject> objectlist = connect.listAllObjects("sample");
 				out.println("<table>");
