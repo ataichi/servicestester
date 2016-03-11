@@ -46,16 +46,6 @@ public class TexttospeechObjectStorage extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-			out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet TexttoSpeechServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet TexttoSpeechServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-			
 			ObjectStorageConnector connect = new ObjectStorageConnector();
 			String filename = null;
             Payload upfile = null;
