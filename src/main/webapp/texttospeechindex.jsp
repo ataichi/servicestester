@@ -15,7 +15,7 @@
     <body>
         <div>
             <h1>Text to Speech:</h1>
-            <form action ="TexttoSpeechServlet" method="get">
+            <form action ="TexttospeechObjectStorage" method="get">
                 <input type="text" name="inputText">
                 <input type="SUBMIT" value="Submit" />
             </form>	
