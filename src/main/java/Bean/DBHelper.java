@@ -1,4 +1,4 @@
-package Bean;
+package Servlet;
 
 import com.ibm.db2.jcc.DB2SimpleDataSource;
 import java.io.PrintWriter;
@@ -19,12 +19,12 @@ public class DBHelper {
     
     private static final long serialVersionUID = 1L;
     // set defaults
-    private String databaseHost;
-    private long port;
-    private String databaseName;
-    private String user;
-    private String password;
-    private String url;
+    private String databaseHost = "localhost";
+    private long port = 50000;
+    private String databaseName = "mydb";
+    private String user = "myuser";
+    private String password = "mypass";
+    private String url = "myurl";
     private Connection con;
     PrintWriter writer;
     private final boolean statusVCAP;

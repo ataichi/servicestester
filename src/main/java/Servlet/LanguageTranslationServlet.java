@@ -1,7 +1,7 @@
 package Servlet;
 
 import Bean.LanguageTranslatorConnector;
-import Bean.DBHelper;
+import Bean.*;
 import com.ibm.watson.developer_cloud.language_translation.v2.LanguageTranslation;
 import com.ibm.watson.developer_cloud.language_translation.v2.model.TranslationResult;
 import java.io.IOException;

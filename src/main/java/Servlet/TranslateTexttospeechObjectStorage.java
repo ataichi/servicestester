@@ -49,7 +49,7 @@ public class TranslateTexttospeechObjectStorage extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 			LanguageTranslatorConnector langconnector = new LanguageTranslatorConnector();
 			LanguageTranslation languageTranslation = new LanguageTranslation();
-			PrintWriter writer = response.getWriter();
+			
 			String input = request.getParameter("inputText");
 			languageTranslation.setUsernameAndPassword(langconnector.getUsername(),langconnector.getPassword());
             TranslationResult translated = languageTranslation.translate(input, "en", "es");
