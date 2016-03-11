@@ -2,7 +2,8 @@
 package Servlet;
 
 import Bean.*;
-
+import com.ibm.watson.developer_cloud.language_translation.v2.LanguageTranslation;
+import com.ibm.watson.developer_cloud.language_translation.v2.model.TranslationResult;
 import java.io.*;
 import java.util.Iterator;
 import java.util.List;
